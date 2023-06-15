@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Header() {
   return (
@@ -48,14 +48,15 @@ function Content() {
   const handleIndexPosts = () => {
     axios.get("http://localhost:5173/Post.json").then((response) => {
       console.log(response.data);
-      posts = response.data;
+      setPosts(response.data);
     });
   };
+
+  useEffect(handleIndexPosts, []);
 
   return (
     <div>
       <PostsNew />
-      <button onClick={handleIndexPosts}>Load Posts</button>
       <PostsIndex posts={posts} />
     </div>
   );
