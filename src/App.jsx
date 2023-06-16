@@ -33,8 +33,8 @@ function PostsIndex(props) {
       {props.posts.map((post) => (
         <div className="posts" key={post.id}>
           <h2>{post.title}</h2>
-          <img src={post.image_url} alt="" />
-          <p>Authour: {post.author}</p>
+          <img src={post.image} alt="" />
+          <p>{post.body}</p>
           <button>More Info</button>
         </div>
       ))}
@@ -46,7 +46,7 @@ function Content() {
   const [posts, setPosts] = useState([]);
 
   const handleIndexPosts = () => {
-    axios.get("http://localhost:5173/Post.json").then((response) => {
+    axios.get("http://localhost:3000/posts.json").then((response) => {
       console.log(response.data);
       setPosts(response.data);
     });
